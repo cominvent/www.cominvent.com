@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="wrap">
+    <h1 class="hero-sr">{{ .Site.Title }} — {{ .Site.Params.description }}</h1>
+    <div class="hero-body">
+      <div class="hero-lead">
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

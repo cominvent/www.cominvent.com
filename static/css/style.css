@@ -1,0 +1,109 @@
+/* ============================================================
+   Cominvent — minimal neutral starter theme.
+   Placeholder styling until the real design lands.
+   ============================================================ */
+
+:root{
+  --paper:#fafafa;
+  --surface:#ffffff;
+  --ink:#1c2733;
+  --ink-2:#3c4a5a;
+  --body:#333333;
+  --muted:#7a828c;
+  --line:#e3e6ea;
+  --accent:#1a6baa;
+  --radius:12px;
+  --wrap:66rem;
+  --read:44rem;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  color:var(--body);
+  background:var(--paper);
+  font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size:18px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+a{color:var(--accent);text-decoration:none;text-underline-offset:3px}
+a:hover{text-decoration:underline}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.6rem}
+
+/* ---------- Header ---------- */
+.site-header{padding:1.4rem 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:inline-flex;align-items:center;gap:.7rem;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand-mark{
+  display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;
+  background:var(--ink);color:var(--paper);
+  font-weight:700;font-size:1.25rem;line-height:1;
+}
+.brand-name{font-weight:700;font-size:1.32rem;letter-spacing:.01em;color:var(--ink)}
+.site-nav{display:flex;gap:1.6rem;align-items:center}
+.site-nav a{font-weight:500;font-size:.98rem;color:var(--ink-2);padding:.2rem 0}
+.site-nav a.is-active{color:var(--ink);border-bottom:2px solid var(--accent)}
+
+/* ---------- Hero (home) ---------- */
+.hero{padding:3rem 0}
+.hero-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero-body{max-width:var(--read);margin:0 auto;text-align:center}
+.hero-lead{color:var(--ink-2)}
+.hero-lead p{font-size:1.16rem;line-height:1.7}
+
+/* ---------- Interior pages ---------- */
+.eyebrow{
+  font-weight:600;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 1rem;
+}
+.page-head{padding:1.6rem 0 .4rem;text-align:center}
+.page-head h1{
+  font-weight:700;color:var(--ink);
+  font-size:clamp(2.1rem,6vw,3rem);line-height:1.1;margin:.2rem 0 0;letter-spacing:-.01em;
+}
+.page-lead{max-width:var(--read);margin:1rem auto 0;color:var(--ink-2);font-size:1.12rem}
+.page-head .eyebrow{margin-bottom:.4rem}
+
+.page-body{padding:2.4rem 0 3.5rem}
+.content{max-width:var(--read);margin:0 auto}
+.content h2{color:var(--ink);font-size:1.6rem;line-height:1.2;margin:2.4rem 0 .8rem}
+.content h3{color:var(--ink-2);font-size:1.18rem;margin:1.8rem 0 .5rem}
+.content p{margin:0 0 1.1rem}
+.content ul,.content ol{margin:0 0 1.2rem;padding-left:1.25rem}
+.content li{margin:.4rem 0}
+.content hr{border:0;border-top:1px solid var(--line);margin:2.4rem 0}
+.content img{max-width:100%;height:auto;border-radius:var(--radius)}
+
+/* ---------- Callout / note ---------- */
+.note{
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:var(--radius);padding:1.1rem 1.25rem;margin:1.6rem 0;
+}
+.note :last-child{margin-bottom:0}
+.note-title{font-weight:700;color:var(--ink);margin:0 0 .35rem;font-size:1.05rem}
+
+.page-list{list-style:none;padding:0;margin:1.4rem 0 0}
+.page-list li{padding:.5rem 0;border-bottom:1px solid var(--line)}
+
+/* ---------- Footer ---------- */
+.site-footer{margin-top:2rem;border-top:1px solid var(--line);padding:2rem 0 3rem}
+.footer-inner{display:flex;align-items:center;gap:.8rem;color:var(--muted);font-size:.9rem}
+.footer-mark{
+  display:grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:50%;
+  border:1.5px solid var(--line);color:var(--ink-2);font-weight:700;font-size:.95rem;
+}
+.footer-inner p{margin:0}
+
+/* ---------- Responsive ---------- */
+@media (max-width:640px){
+  body{font-size:17px}
+  .site-header{padding:1.1rem 0}
+  .brand-name{font-size:1.15rem}
+  .site-nav{gap:1.1rem}
+}

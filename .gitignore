@@ -1,0 +1,10 @@
+# Hugo build output and caches
+/public/
+/resources/
+.hugo_build.lock
+
+# htmltest lint cache/log
+/tmp/
+
+# Editor / OS cruft
+.DS_Store

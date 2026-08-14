@@ -1,0 +1,54 @@
+name: build-deploy
+
+# PR  -> build + lint (broken-link check), no deploy
+# main -> build + rsync the built site to the static host
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  DEPLOY_HOST: "143.95.239.63"         # host for cominvent.com (update if the site moves)
+  DEPLOY_USER: "cominventcom"
+  DEPLOY_PATH: "htdocs/cominvent.com/"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: latest
+          extended: true
+
+      - name: Build
+        run: hugo --gc --minify   # baseURL comes from hugo.toml (single source of truth)
+
+      - name: Lint (htmltest — broken internal links & images)
+        run: |
+          curl -sSL https://raw.githubusercontent.com/wjdp/htmltest/master/godownloader.sh | bash -s -- -b "$HOME/bin"
+          "$HOME/bin/htmltest"
+
+      # Deploy only on merge/push to main.
+      - name: Deploy via rsync (main only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          SSH_KEY: ${{ secrets.COMINVENT_DEPLOY_KEY }}
+        run: |
+          install -m 600 /dev/stdin deploy_key <<< "$SSH_KEY"
+          # --exclude '.well-known' keeps the host's ACME/SSL challenge dir
+          # from being wiped by --delete.
+          rsync -az --delete --exclude '.well-known' \
+            -e "ssh -i deploy_key -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null" \
+            public/ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"

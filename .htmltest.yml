@@ -1,0 +1,4 @@
+DirectoryPath: public
+CheckExternal: false
+IgnoreDirectoryMissingTrailingSlash: true
+EnforceHTTPS: false

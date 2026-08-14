@@ -1,0 +1,16 @@
+baseURL = "https://cominvent.com/"   # apex domain is canonical; www redirects to apex
+title = "Cominvent"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+
+[languages.en]
+  locale = "en-us"
+
+[params]
+  description = "Cominvent AS — search & open source consulting."
+  author = "Cominvent AS"
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
