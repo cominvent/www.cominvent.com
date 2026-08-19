@@ -182,7 +182,7 @@
     </form>
     <script>
     (function () {
-      var EP = {{ .Site.Params.contact_endpoint | default "" | jsonify }};
+      var EP = "{{ .Site.Params.contact_endpoint }}";
       var f = document.getElementById("contact-form"); if (!f) return;
       var s = f.querySelector(".form-status"), btn = f.querySelector("button[type=submit]");
       var val = function (n) { return f.elements[n].value; };
