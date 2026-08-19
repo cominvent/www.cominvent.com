@@ -52,6 +52,17 @@ img{max-width:100%;height:auto}
 .nav-cta{background:var(--green-tint);color:var(--green-dark)!important;font-weight:600!important;
   padding:.45rem 1rem;border-radius:999px;white-space:nowrap}
 .nav-cta:hover{background:var(--green);color:#fff!important}
+/* Hamburger button — hidden on desktop, shown at the mobile breakpoint below. */
+.nav-toggle{display:none;flex:none;width:2.75rem;height:2.75rem;padding:0;cursor:pointer;
+  align-items:center;justify-content:center;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+.nav-toggle:hover{border-color:var(--green)}
+.nav-toggle span{display:block;width:20px;height:2px;border-radius:2px;background:var(--ink);
+  transition:transform .2s ease,opacity .2s ease}
+.nav-toggle span+span{margin-top:5px}
+.nav-toggle[aria-expanded="true"]{border-color:var(--green)}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ---------- Section scaffolding ---------- */
 .section{padding:5rem 0}
@@ -188,11 +199,22 @@ img{max-width:100%;height:auto}
   .tile-featured{grid-column:1/-1;grid-row:auto;min-height:14rem}
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:1.6rem}
 }
-/* Collapse the nav to its compact form (Solr Training + CTA only) before the full
-   menu starts crowding the logo — the plain links drop out here, well above the
-   phone breakpoint. */
+/* Below the width where the full inline nav fits, everything moves into a
+   hamburger dropdown; the header shows just the logo + toggle. */
 @media (max-width:840px){
-  .site-nav a:not(.nav-cta):not(.nav-training){display:none}
+  .header-inner{position:relative}
+  .nav-toggle{display:inline-flex}
+  .site-nav{position:absolute;top:calc(100% + .5rem);left:0;right:0;z-index:60;
+    display:none;flex-direction:column;align-items:stretch;gap:.15rem;
+    background:var(--bg);border:1px solid var(--line);border-radius:14px;
+    padding:.5rem;box-shadow:var(--shadow)}
+  .site-nav.open{display:flex}
+  .site-nav a{padding:.8rem .85rem;border-radius:10px;font-size:1.02rem;color:var(--ink)}
+  .site-nav a:hover{background:var(--bg-alt);text-decoration:none}
+  .nav-training{color:var(--green-dark)!important}
+  .nav-cta{background:var(--green);color:#fff!important;justify-content:center;text-align:center;
+    padding:.8rem 1rem;margin-top:.3rem}
+  .nav-cta:hover{background:var(--green-dark);color:#fff!important}
 }
 @media (max-width:640px){
   body{font-size:17px}

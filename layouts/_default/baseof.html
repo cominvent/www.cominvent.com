@@ -20,7 +20,10 @@
       <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ .Site.Params.author }} home">
         <img class="brand-logo" src="{{ "img/cominvent-logo.png" | relURL }}" alt="Cominvent" width="180" height="34">
       </a>
-      <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
         {{ range .Site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
         {{ with .Site.Params.solrtraining }}<a class="nav-training" href="{{ . }}" target="_blank" rel="noopener">Solr Training&nbsp;↗</a>{{ end }}
         <a class="nav-cta" href="#contact">Get in touch</a>
@@ -48,5 +51,26 @@
       </div>
     </div>
   </footer>
+  <script>
+  (function () {
+    var t = document.querySelector(".nav-toggle"), nav = document.getElementById("site-nav");
+    if (!t || !nav) return;
+    function setOpen(o) {
+      t.setAttribute("aria-expanded", o ? "true" : "false");
+      t.setAttribute("aria-label", o ? "Close menu" : "Open menu");
+      nav.classList.toggle("open", o);
+    }
+    t.addEventListener("click", function () { setOpen(t.getAttribute("aria-expanded") !== "true"); });
+    // close after choosing a destination (the nav is in-page anchors + the CTA)
+    nav.addEventListener("click", function (e) { if (e.target.closest("a")) setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+    // click/tap outside the header closes it
+    document.addEventListener("click", function (e) {
+      if (nav.classList.contains("open") && !e.target.closest(".site-header")) setOpen(false);
+    });
+    // if the viewport grows back to the desktop nav, drop the open state
+    window.addEventListener("resize", function () { if (window.innerWidth > 840) setOpen(false); });
+  })();
+  </script>
 </body>
 </html>
