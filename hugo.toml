@@ -13,6 +13,7 @@ enableRobotsTXT = true
   intro = "Cominvent is the independent practice of Jan Høydahl — Apache Lucene & Solr committer and Apache Software Foundation member, based in Drammen, Norway. Expert help with open-source search (Apache Solr & OpenSearch), plus AI & chatbots, open-source data platforms and cyber security."
   email = "info@cominvent.com"
   linkedin = "https://www.linkedin.com/in/janhoy/"
+  solrtraining = "https://solrtraining.com"   # online Apache Solr training business
   # Single-page scroll: nav = in-page anchors (see the [[menu.main]] anchors below).
 
 [[menu.main]]

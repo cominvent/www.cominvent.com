@@ -47,6 +47,8 @@ img{max-width:100%;height:auto}
 .site-nav{display:flex;gap:1.5rem;align-items:center}
 .site-nav a{font-weight:500;font-size:.98rem;color:var(--ink-soft)}
 .site-nav a:hover{color:var(--ink);text-decoration:none}
+.nav-training{color:var(--green-dark)!important;font-weight:600!important}
+.nav-training:hover{color:var(--green)!important}
 .nav-cta{background:var(--green-tint);color:var(--green-dark)!important;font-weight:600!important;
   padding:.45rem 1rem;border-radius:999px}
 .nav-cta:hover{background:var(--green);color:#fff!important}
@@ -77,6 +79,8 @@ img{max-width:100%;height:auto}
   background:var(--green-tint);color:var(--green-dark);margin-bottom:1rem}
 .card-title{font-size:1.18rem;font-weight:700;color:var(--ink);margin:0 0 .5rem}
 .card-body{color:var(--ink-soft);font-size:1rem;margin:0}
+.card-link{display:inline-block;margin-top:.9rem;font-weight:600;color:var(--green-dark);font-size:.95rem}
+.card-link:hover{color:var(--green);text-decoration:none}
 
 /* ---------- Testimonials ---------- */
 .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
@@ -140,7 +144,7 @@ img{max-width:100%;height:auto}
 @media (max-width:640px){
   body{font-size:17px}
   .section{padding:3.5rem 0}
-  .site-nav a:not(.nav-cta){display:none}
+  .site-nav a:not(.nav-cta):not(.nav-training){display:none}
   .cards,.quotes,.work{grid-template-columns:1fr}
   .footer-inner{flex-direction:column}
 }

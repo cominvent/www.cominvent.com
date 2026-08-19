@@ -11,9 +11,11 @@
 - title: "Cyber Security"
   icon: shield
   body: "Security assessments, infrastructure hardening and secure-by-design engineering for the search, data and AI systems you depend on."
-- title: "Training"
+- title: "Online Solr Training"
   icon: training
-  body: "Hands-on courses in Apache Solr and search engineering — delivered on-site for your team or online."
+  body: "Live, instructor-led online courses in Apache Solr and search — hands-on, and open to attendees anywhere. Run through our dedicated training business."
+  link: "https://solrtraining.com"
+  link_text: "Browse courses at solrtraining.com →"
 - title: "Migration & Support"
   icon: support
   body: "Version migrations and upgrades, plus live production support for open-source search and data infrastructure when you need an expert on call."
