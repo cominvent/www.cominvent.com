@@ -26,7 +26,7 @@
     <p class="eyebrow">What we do</p>
     <h2 class="section-title">Consulting across search, AI, data &amp; security</h2>
     <div class="cards">
-      {{ range site.Data.services }}
+      {{ range hugo.Data.services }}
       <article class="card">
         <span class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{{ index $icons .icon | safeHTML }}</svg>
@@ -44,7 +44,7 @@
     <p class="eyebrow">Clients</p>
     <h2 class="section-title">What clients say</h2>
     <div class="quotes">
-      {{ range site.Data.testimonials }}
+      {{ range hugo.Data.testimonials }}
       <figure class="quote">
         <blockquote>{{ .quote }}</blockquote>
         <figcaption><span class="quote-name">{{ .name }}</span><span class="quote-role">{{ .role }}</span></figcaption>
