@@ -67,6 +67,8 @@ img{max-width:100%;height:auto}
   color:var(--ink);margin:.2rem 0 1.1rem}
 .hero-lead{font-size:1.2rem;color:var(--ink-soft);margin:0 0 2rem;max-width:42rem}
 .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero-cred{display:flex;align-items:center;gap:.7rem;margin:2rem 0 0;color:var(--ink-soft);font-size:.9rem;font-weight:500}
+.hero-cred img{height:30px;width:auto;display:block;flex:none}
 
 /* ---------- Service cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
