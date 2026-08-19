@@ -95,9 +95,12 @@ img{max-width:100%;height:auto}
 .about-body strong{color:var(--ink)}
 .content :last-child{margin-bottom:0}
 
-/* ---------- Careers ---------- */
-.careers-inner{max-width:40rem}
-.careers-lead{font-size:1.15rem;color:var(--ink-soft);margin:0 0 1.6rem}
+/* ---------- Selected work ---------- */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.work-item{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem 1.4rem;border-left:3px solid var(--green)}
+.work-client{font-size:1.1rem;font-weight:700;color:var(--ink);margin:0 0 .5rem}
+.work-what{color:var(--ink-soft);font-size:.98rem;margin:0}
 
 /* ---------- Contact ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:start}
@@ -126,13 +129,13 @@ img{max-width:100%;height:auto}
 
 /* ---------- Responsive ---------- */
 @media (max-width:860px){
-  .cards,.quotes{grid-template-columns:repeat(2,1fr)}
+  .cards,.quotes,.work{grid-template-columns:repeat(2,1fr)}
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:1.6rem}
 }
 @media (max-width:640px){
   body{font-size:17px}
   .section{padding:3.5rem 0}
   .site-nav a:not(.nav-cta){display:none}
-  .cards,.quotes{grid-template-columns:1fr}
+  .cards,.quotes,.work{grid-template-columns:1fr}
   .footer-inner{flex-direction:column}
 }

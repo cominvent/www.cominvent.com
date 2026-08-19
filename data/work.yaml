@@ -1,0 +1,13 @@
+# Selected client work (task 23c) — from Jan Høydahl's real project history (LinkedIn / Cominvent).
+- client: "Norwegian Tax Administration"
+  what: "Replaced an aging legacy engine with Apache Solr — indexing cut from hours to minutes, better relevance and lower hardware cost."
+- client: "DIPS Arena"
+  what: "Apache Solr search for Norway's largest electronic health-record platform — sub-second across millions of records, with facets, highlighting and ranking."
+- client: "University of Oslo"
+  what: "Site search across ~70 university web sites on Apache Solr and ManifoldCF, with custom crawling, security and facets."
+- client: "NHST · Dagens Næringsliv"
+  what: "Migrated news search from FAST to Apache Solr for eight online publications — cutting licence cost and easing cloud scaling."
+- client: "NAF"
+  what: "Search behind the NAF travel planner (reiseplanlegger.naf.no)."
+- client: "Kobler"
+  what: "Search and content matching for a privacy-first advertising platform that places ads by article content, without cross-site tracking."

@@ -39,19 +39,19 @@
   </div>
 </section>
 
-<section id="testimonials" class="section section-alt">
+<section id="work" class="section section-alt">
   <div class="wrap">
-    <p class="eyebrow">Clients</p>
-    <h2 class="section-title">What clients say</h2>
-    <div class="quotes">
-      {{ range hugo.Data.testimonials }}
-      <figure class="quote">
-        <blockquote>{{ .quote }}</blockquote>
-        <figcaption><span class="quote-name">{{ .name }}</span><span class="quote-role">{{ .role }}</span></figcaption>
-      </figure>
+    <p class="eyebrow">Selected work</p>
+    <h2 class="section-title">Trusted on demanding search projects</h2>
+    <div class="work">
+      {{ range hugo.Data.work }}
+      <article class="work-item">
+        <h3 class="work-client">{{ .client }}</h3>
+        <p class="work-what">{{ .what }}</p>
+      </article>
       {{ end }}
     </div>
-    {{ with .Site.Params.linkedin }}<p class="quotes-more"><a href="{{ . }}" rel="noopener">More recommendations on LinkedIn →</a></p>{{ end }}
+    {{ with .Site.Params.linkedin }}<p class="quotes-more"><a href="{{ . }}" rel="noopener">More of Jan's work on LinkedIn →</a></p>{{ end }}
   </div>
 </section>
 

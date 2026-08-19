@@ -20,8 +20,8 @@ enableRobotsTXT = true
   url = "#services"
   weight = 1
 [[menu.main]]
-  name = "Clients"
-  url = "#testimonials"
+  name = "Work"
+  url = "#work"
   weight = 2
 [[menu.main]]
   name = "About"
