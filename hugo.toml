@@ -7,12 +7,12 @@ enableRobotsTXT = true
   locale = "en-us"
 
 [params]
-  description = "Cominvent AS — consulting in search (Apache Solr), AI & chatbots, open-source data & lakehouse platforms, and cyber security."
+  description = "Cominvent AS — Jan Høydahl, independent consultant in Drammen, Norway. Apache Software Foundation member and Apache Lucene/Solr committer & PMC; expert in Apache Solr and OpenSearch, plus AI, open-source data platforms and cyber security."
   author = "Cominvent AS"
   tagline = "Search, AI, data & security — engineered by specialists."
-  intro = "Cominvent is an independent Oslo-based consultancy. We help organisations build and run open-source search, AI, data and security systems — from Apache Solr relevance to LLM chatbots, lakehouse data platforms and hardened infrastructure."
+  intro = "Cominvent is the independent practice of Jan Høydahl — Apache Lucene & Solr committer and Apache Software Foundation member, based in Drammen, Norway. Expert help with open-source search (Apache Solr & OpenSearch), plus AI & chatbots, open-source data platforms and cyber security."
   email = "info@cominvent.com"
-  linkedin = ""            # TODO (task 23c): owner LinkedIn profile URL
+  linkedin = "https://www.linkedin.com/in/janhoy/"
   # Single-page scroll: nav = in-page anchors (see the [[menu.main]] anchors below).
 
 [[menu.main]]
@@ -27,10 +27,6 @@ enableRobotsTXT = true
   name = "About"
   url = "#about"
   weight = 3
-[[menu.main]]
-  name = "Careers"
-  url = "#careers"
-  weight = 4
 [[menu.main]]
   name = "Contact"
   url = "#contact"
