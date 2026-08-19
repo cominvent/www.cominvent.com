@@ -90,6 +90,9 @@ img{max-width:100%;height:auto}
 
 /* ---------- About ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:2.5rem;align-items:start}
+.about-portrait{margin:1.6rem 0 0}
+.about-portrait img{width:100%;max-width:15rem;border-radius:var(--radius);display:block;box-shadow:var(--shadow)}
+.about-portrait figcaption{margin-top:.65rem;font-weight:700;color:var(--ink)}
 .about-body{color:var(--ink-soft)}
 .about-body p{margin:0 0 1.1rem}
 .about-body strong{color:var(--ink)}

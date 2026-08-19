@@ -13,7 +13,7 @@
   body: "Security assessments, infrastructure hardening and secure-by-design engineering for the search, data and AI systems you depend on."
 - title: "Training"
   icon: training
-  body: "Hands-on courses in Apache Solr, OpenSearch and search engineering — delivered on-site for your team or online."
+  body: "Hands-on courses in Apache Solr and search engineering — delivered on-site for your team or online."
 - title: "Migration & Support"
   icon: support
   body: "Version migrations and upgrades, plus live production support for open-source search and data infrastructure when you need an expert on call."

@@ -73,9 +73,13 @@
 
 <section id="about" class="section section-alt">
   <div class="wrap about-grid">
-    <div>
+    <div class="about-intro">
       <p class="eyebrow">About</p>
       <h2 class="section-title">{{ .Params.about_title }}</h2>
+      <figure class="about-portrait">
+        <img src="{{ "img/jan-hoydahl.jpg" | relURL }}" alt="Jan Høydahl, Cominvent AS" width="591" height="730" loading="lazy">
+        <figcaption>Jan Høydahl</figcaption>
+      </figure>
     </div>
     <div class="about-body content">{{ .Content }}</div>
   </div>
