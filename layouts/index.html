@@ -87,7 +87,6 @@
       <p class="eyebrow">Contact</p>
       <h2 class="section-title">Let's talk</h2>
       <p>Tell us about your project — search, AI, data or security — and we'll get back to you.</p>
-      <p class="contact-direct">Or email <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
     </div>
     {{/* TODO 23c: wire to a Brevo-backed endpoint (server-side; do NOT put the Brevo key in this page). */}}
     <form class="contact-form" method="post" action="/api/contact" novalidate>
