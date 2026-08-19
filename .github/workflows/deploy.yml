@@ -16,9 +16,9 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  DEPLOY_HOST: "143.95.239.63"         # host for cominvent.com (update if the site moves)
-  DEPLOY_USER: "cominventcom"
-  DEPLOY_PATH: "htdocs/cominvent.com/"
+  DEPLOY_HOST: "64.225.82.53"          # CloudPanel droplet (reserved IP)
+  DEPLOY_USER: "cominvent"             # CloudPanel site user
+  DEPLOY_PATH: "htdocs/new.cominvent.com/"   # STAGING docroot; -> htdocs/cominvent.com/ at cutover (task 23f)
 
 jobs:
   build-deploy:
