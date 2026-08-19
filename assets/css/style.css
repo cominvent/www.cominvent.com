@@ -41,7 +41,7 @@ img{max-width:100%;height:auto}
 .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);
   backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0}
-.brand{display:inline-flex;align-items:center}
+.brand{display:inline-flex;align-items:center;flex:none}   /* never let the logo get squeezed by the nav */
 .brand:hover{text-decoration:none}
 .brand-logo{display:block;height:34px;width:auto}
 .site-nav{display:flex;gap:1.5rem;align-items:center}
@@ -188,10 +188,15 @@ img{max-width:100%;height:auto}
   .tile-featured{grid-column:1/-1;grid-row:auto;min-height:14rem}
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:1.6rem}
 }
+/* Collapse the nav to its compact form (Solr Training + CTA only) before the full
+   menu starts crowding the logo — the plain links drop out here, well above the
+   phone breakpoint. */
+@media (max-width:840px){
+  .site-nav a:not(.nav-cta):not(.nav-training){display:none}
+}
 @media (max-width:640px){
   body{font-size:17px}
   .section{padding:3.5rem 0}
-  .site-nav a:not(.nav-cta):not(.nav-training){display:none}
   .bento,.work{grid-template-columns:1fr}
   .tile-banner .tile-inner{gap:1rem}
   .tile-banner .card-link{margin:.4rem 0 0}

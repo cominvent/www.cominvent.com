@@ -8,7 +8,11 @@
   <meta property="og:title" content="{{ .Site.Title }} — {{ .Site.Params.tagline }}">
   <meta property="og:description" content="{{ .Site.Params.description }}">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  {{/* Fingerprinted CSS URL (css/style.min.<hash>.css) so the host's far-future
+       immutable cache busts automatically on every change — a fixed /css/style.css
+       URL stayed pinned in visitors' browsers for ~10 years (CloudPanel nginx expires). */}}
+  {{ $css := resources.Get "css/style.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 </head>
 <body>
   <header class="site-header">
