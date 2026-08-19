@@ -1,0 +1,19 @@
+# Service cards for the Services section (task 23b/23c). Icons are inline SVG keys (see index.html).
+- title: "Search & Apache Solr"
+  icon: search
+  body: "Deep Apache Solr and open-source search expertise — relevance tuning, scaling, cluster operations and search architecture. The specialism Cominvent is known for."
+- title: "AI & Chatbots"
+  icon: ai
+  body: "LLM-powered applications, retrieval-augmented generation (RAG), semantic search and conversational assistants — grounded in your own data."
+- title: "Open-source Data & Lakehouse"
+  icon: data
+  body: "Modern data platforms and lakehouse architectures on open-source foundations — ingestion, storage, query and governance without vendor lock-in."
+- title: "Cyber Security"
+  icon: shield
+  body: "Security assessments, infrastructure hardening and secure-by-design engineering for the search, data and AI systems you depend on."
+- title: "Training"
+  icon: training
+  body: "Hands-on courses in Solr, search and data engineering — at our Oslo training facility or delivered on-site for your team."
+- title: "Migration & Support"
+  icon: support
+  body: "Version migrations and upgrades, plus live production support for open-source search and data infrastructure when you need an expert on call."

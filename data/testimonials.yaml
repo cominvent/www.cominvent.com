@@ -1,0 +1,11 @@
+# Client testimonials (task 23c). PLACEHOLDERS — replace with real quotes drawn from the owner's
+# LinkedIn recommendations. Keep 3–5. `name`, `role` (role @ company), `quote`.
+- quote: "«Placeholder testimonial — a real client recommendation from LinkedIn goes here, describing the impact of Cominvent's search/relevance work.»"
+  name: "Client Name"
+  role: "Title, Company"
+- quote: "«Placeholder testimonial — another LinkedIn recommendation highlighting delivery, expertise and outcomes.»"
+  name: "Client Name"
+  role: "Title, Company"
+- quote: "«Placeholder testimonial — a third short quote (data / AI / security engagement).»"
+  name: "Client Name"
+  role: "Title, Company"

@@ -3,29 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+  <title>{{ if .IsHome }}{{ .Site.Title }} — {{ .Site.Params.tagline }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:title" content="{{ .Site.Title }} — {{ .Site.Params.tagline }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
 <body>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="{{ "/" | relURL }}">
-        <span class="brand-mark" aria-hidden="true">C</span>
-        <span class="brand-name">{{ .Site.Title }}</span>
+      <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ .Site.Params.author }} home">
+        <img class="brand-logo" src="{{ "img/cominvent-logo.png" | relURL }}" alt="Cominvent" width="180" height="34">
       </a>
-      <nav class="site-nav">
-        {{ range .Site.Menus.main }}<a href="{{ .URL | relURL }}"{{ if $.IsMenuCurrent "main" . }} class="is-active"{{ end }}>{{ .Name }}</a>{{ end }}
+      <nav class="site-nav" aria-label="Primary">
+        {{ range .Site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+        <a class="nav-cta" href="#contact">Get in touch</a>
       </nav>
     </div>
   </header>
   <main>
     {{ block "main" . }}{{ end }}
   </main>
-  <footer class="site-footer">
+  <footer class="site-footer" id="footer">
     <div class="wrap footer-inner">
-      <span class="footer-mark" aria-hidden="true">C</span>
-      <p>© {{ now.Year }} {{ .Site.Params.author }}</p>
+      <div class="footer-brand">
+        <img class="brand-logo" src="{{ "img/cominvent-logo.png" | relURL }}" alt="Cominvent" width="150" height="28">
+        <p class="footer-tag">{{ .Site.Params.tagline }}</p>
+      </div>
+      <div class="footer-meta">
+        {{ with .Site.Params.linkedin }}
+        <a class="footer-linkedin" href="{{ . }}" rel="me noopener" aria-label="Cominvent on LinkedIn">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        {{ end }}
+        <a class="footer-email" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+        <p class="footer-addr">Cominvent AS · Oslo, Norway</p>
+        <p class="footer-copy">© {{ now.Year }} {{ .Site.Params.author }}</p>
+      </div>
     </div>
   </footer>
 </body>

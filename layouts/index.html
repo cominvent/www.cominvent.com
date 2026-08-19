@@ -1,12 +1,96 @@
 {{ define "main" }}
+{{/* inline stroke icons keyed by data/services.yaml `icon` */}}
+{{ $icons := dict
+  "search"   `<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`
+  "ai"       `<rect x="5" y="7" width="14" height="12" rx="2"/><path d="M9 7V4h6v3M9 12h.01M15 12h.01M9 16h6"/><line x1="12" y1="2" x2="12" y2="4"/>`
+  "data"     `<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/>`
+  "shield"   `<path d="M12 2l8 3v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V5z"/><path d="M9 12l2 2 4-4"/>`
+  "training" `<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/>`
+  "support"  `<path d="M18 8a6 6 0 1 0-12 0v5a3 3 0 0 0 3 3h1"/><rect x="2" y="11" width="4" height="6" rx="1"/><rect x="18" y="11" width="4" height="6" rx="1"/>`
+}}
+
 <section class="hero">
-  <div class="wrap">
-    <h1 class="hero-sr">{{ .Site.Title }} — {{ .Site.Params.description }}</h1>
-    <div class="hero-body">
-      <div class="hero-lead">
-        {{ .Content }}
-      </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Cominvent AS · Oslo, Norway</p>
+    <h1 class="hero-title">{{ .Site.Params.tagline }}</h1>
+    <p class="hero-lead">{{ .Site.Params.intro }}</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#services">What we do →</a>
     </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="wrap">
+    <p class="eyebrow">What we do</p>
+    <h2 class="section-title">Consulting across search, AI, data &amp; security</h2>
+    <div class="cards">
+      {{ range site.Data.services }}
+      <article class="card">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{{ index $icons .icon | safeHTML }}</svg>
+        </span>
+        <h3 class="card-title">{{ .title }}</h3>
+        <p class="card-body">{{ .body }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="section section-alt">
+  <div class="wrap">
+    <p class="eyebrow">Clients</p>
+    <h2 class="section-title">What clients say</h2>
+    <div class="quotes">
+      {{ range site.Data.testimonials }}
+      <figure class="quote">
+        <blockquote>{{ .quote }}</blockquote>
+        <figcaption><span class="quote-name">{{ .name }}</span><span class="quote-role">{{ .role }}</span></figcaption>
+      </figure>
+      {{ end }}
+    </div>
+    {{ with .Site.Params.linkedin }}<p class="quotes-more"><a href="{{ . }}" rel="noopener">More recommendations on LinkedIn →</a></p>{{ end }}
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2 class="section-title">{{ .Params.about_title }}</h2>
+    </div>
+    <div class="about-body content">{{ .Content }}</div>
+  </div>
+</section>
+
+<section id="careers" class="section section-alt">
+  <div class="wrap careers-inner">
+    <p class="eyebrow">Careers</p>
+    <h2 class="section-title">Work with us</h2>
+    <p class="careers-lead">We're always interested in talking to sharp engineers who love open-source
+      search, data, AI and security. If that's you, tell us what you've built and what you'd like to work on.</p>
+    <a class="btn btn-primary" href="#contact">Say hello</a>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="wrap contact-grid">
+    <div class="contact-intro">
+      <p class="eyebrow">Contact</p>
+      <h2 class="section-title">Let's talk</h2>
+      <p>Tell us about your project — search, AI, data or security — and we'll get back to you.</p>
+      <p class="contact-direct">Or email <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
+    </div>
+    {{/* TODO 23c: wire to a Brevo-backed endpoint (server-side; do NOT put the Brevo key in this page). */}}
+    <form class="contact-form" method="post" action="/api/contact" novalidate>
+      <label>Name<input type="text" name="name" autocomplete="name" required></label>
+      <label>Email<input type="email" name="email" autocomplete="email" required></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <button class="btn btn-primary" type="submit">Send message</button>
+      <p class="form-note">The form endpoint isn't live yet (task 23c).</p>
+    </form>
   </div>
 </section>
 {{ end }}

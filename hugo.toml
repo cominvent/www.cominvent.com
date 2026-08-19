@@ -7,10 +7,34 @@ enableRobotsTXT = true
   locale = "en-us"
 
 [params]
-  description = "Cominvent AS — search & open source consulting."
+  description = "Cominvent AS — consulting in search (Apache Solr), AI & chatbots, open-source data & lakehouse platforms, and cyber security."
   author = "Cominvent AS"
+  tagline = "Search, AI, data & security — engineered by specialists."
+  intro = "Cominvent is an independent Oslo-based consultancy. We help organisations build and run open-source search, AI, data and security systems — from Apache Solr relevance to LLM chatbots, lakehouse data platforms and hardened infrastructure."
+  email = "info@cominvent.com"
+  linkedin = ""            # TODO (task 23c): owner LinkedIn profile URL
+  # Single-page scroll: nav = in-page anchors (see the [[menu.main]] anchors below).
 
 [[menu.main]]
-  name = "Home"
-  url = "/"
+  name = "Services"
+  url = "#services"
   weight = 1
+[[menu.main]]
+  name = "Clients"
+  url = "#testimonials"
+  weight = 2
+[[menu.main]]
+  name = "About"
+  url = "#about"
+  weight = 3
+[[menu.main]]
+  name = "Careers"
+  url = "#careers"
+  weight = 4
+[[menu.main]]
+  name = "Contact"
+  url = "#contact"
+  weight = 5
+
+[markup.goldmark.renderer]
+  unsafe = true
