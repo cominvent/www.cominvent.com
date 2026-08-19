@@ -18,7 +18,7 @@ concurrency:
 env:
   DEPLOY_HOST: "64.225.82.53"          # CloudPanel droplet (reserved IP)
   DEPLOY_USER: "cominvent"             # CloudPanel site user
-  DEPLOY_PATH: "htdocs/new.cominvent.com/"   # STAGING docroot; -> htdocs/cominvent.com/ at cutover (task 23f)
+  DEPLOY_PATH: "htdocs/cominvent.com/"   # LIVE (cutover 2026-08-19)
 
 jobs:
   build-deploy:
