@@ -17,6 +17,8 @@ disableKinds = ["taxonomy", "term"]   # single-page site: no /tags/ or /categori
   linkedin = "https://www.linkedin.com/in/janhoy/"
   solrtraining = "https://solrtraining.com"   # online Apache Solr training business
   contact_endpoint = "https://contact.cominvent.com"   # cominvent-contact Worker (see contact-worker/)
+  # Cloudflare Turnstile (anti-spam). Site key public; matching secret on the Worker (TURNSTILE_SECRET).
+  turnstile_sitekey = "0x4AAAAAAEWIBXn7V-Prx1fH"
   # Single-page scroll: nav = in-page anchors (see the [[menu.main]] anchors below).
 
 [[menu.main]]

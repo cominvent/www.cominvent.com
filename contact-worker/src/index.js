@@ -23,6 +23,28 @@ export default {
     // Honeypot: real users leave the hidden "company" field empty; bots fill it. Silently accept + drop.
     if (data.company) return json({ ok: true }, 200, cors);
 
+    // Cloudflare Turnstile — verified server-side when TURNSTILE_SECRET is set. This is what stops
+    // spammers POSTing straight to this Worker: a valid token can only be minted by solving the
+    // challenge on our own page (single-use, short-lived, bound to the sitekey). No token → 403.
+    if (env.TURNSTILE_SECRET) {
+      const token = String(data.turnstileToken || "");
+      if (!token) return json({ ok: false, error: "Anti-spam check missing — please reload and try again." }, 403, cors);
+      const params = new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: token });
+      const ip = request.headers.get("CF-Connecting-IP");
+      if (ip) params.append("remoteip", ip);
+      const vr = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params,
+        signal: AbortSignal.timeout(10_000),
+      }).then((r) => r.json()).catch(() => ({}));
+      const hosts = new Set(allowed.map((o) => { try { return new URL(o).hostname; } catch { return null; } }).filter(Boolean));
+      if (!vr.success || vr.action !== "contact" || (hosts.size && !hosts.has(vr.hostname))) {
+        console.log("Turnstile reject", JSON.stringify({ success: vr.success, action: vr.action, hostname: vr.hostname, errors: vr["error-codes"] }));
+        return json({ ok: false, error: "Anti-spam check failed — please try again." }, 403, cors);
+      }
+    }
+
     const name = String(data.name || "").trim();
     const email = String(data.email || "").trim();
     const message = String(data.message || "").trim();

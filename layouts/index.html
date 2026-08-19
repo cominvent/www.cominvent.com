@@ -177,6 +177,11 @@
       <label>Message<textarea name="message" rows="5" required></textarea></label>
       {{/* honeypot: real users leave this empty; the Worker drops any submission that fills it */}}
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      {{ with .Site.Params.turnstile_sitekey }}
+      {{/* Cloudflare Turnstile — anti-spam. Injects a hidden `cf-turnstile-response` token into this form. */}}
+      <div class="cf-turnstile" data-sitekey="{{ . }}" data-action="contact" data-appearance="interaction-only" data-size="flexible"></div>
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      {{ end }}
       <button class="btn btn-primary" type="submit">Send message</button>
       <p class="form-status" role="status" aria-live="polite"></p>
     </form>
@@ -190,15 +195,17 @@
         e.preventDefault();
         if (!f.reportValidity()) return;
         if (!EP) { s.className = "form-status err"; s.textContent = "The contact form is being set up — please try again shortly."; return; }
+        var tsEl = f.elements["cf-turnstile-response"], token = tsEl ? tsEl.value : "";
+        if (tsEl && !token) { s.className = "form-status err"; s.textContent = "Please complete the anti-spam check and try again."; return; }
         btn.disabled = true; s.className = "form-status"; s.textContent = "Sending…";
         try {
           var r = await fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: val("name"), email: val("email"), message: val("message"), company: val("company") }) });
+            body: JSON.stringify({ name: val("name"), email: val("email"), message: val("message"), company: val("company"), turnstileToken: token }) });
           var d = await r.json().catch(function () { return {}; });
           if (r.ok && d.ok) { f.reset(); s.className = "form-status ok"; s.textContent = "Thanks — your message has been sent."; }
           else { s.className = "form-status err"; s.textContent = (d && d.error) || "Something went wrong. Please try again."; }
         } catch (_) { s.className = "form-status err"; s.textContent = "Network error. Please try again."; }
-        finally { btn.disabled = false; }
+        finally { btn.disabled = false; if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} } }
       });
     })();
     </script>
