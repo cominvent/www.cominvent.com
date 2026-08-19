@@ -53,7 +53,7 @@ img{max-width:100%;height:auto}
   padding:.45rem 1rem;border-radius:999px;white-space:nowrap}
 .nav-cta:hover{background:var(--green);color:#fff!important}
 /* Hamburger button — hidden on desktop, shown at the mobile breakpoint below. */
-.nav-toggle{display:none;flex:none;width:2.75rem;height:2.75rem;padding:0;cursor:pointer;
+.nav-toggle{display:none;flex:none;flex-direction:column;width:2.75rem;height:2.75rem;padding:0;cursor:pointer;
   align-items:center;justify-content:center;border:1.5px solid var(--line);border-radius:12px;background:#fff}
 .nav-toggle:hover{border-color:var(--green)}
 .nav-toggle span{display:block;width:20px;height:2px;border-radius:2px;background:var(--ink);
