@@ -55,7 +55,23 @@
   </div>
 </section>
 
-<section id="about" class="section">
+<section id="testimonials" class="section">
+  <div class="wrap">
+    <p class="eyebrow">Clients</p>
+    <h2 class="section-title">What clients say</h2>
+    <div class="quotes">
+      {{ range hugo.Data.testimonials }}
+      <figure class="quote">
+        <blockquote>{{ .quote }}</blockquote>
+        <figcaption><span class="quote-name">{{ .name }}</span><span class="quote-role">{{ .role }}</span></figcaption>
+      </figure>
+      {{ end }}
+    </div>
+    {{ with .Site.Params.linkedin }}<p class="quotes-more"><a href="{{ . }}details/recommendations/" rel="noopener">Read more recommendations on LinkedIn →</a></p>{{ end }}
+  </div>
+</section>
+
+<section id="about" class="section section-alt">
   <div class="wrap about-grid">
     <div>
       <p class="eyebrow">About</p>
@@ -65,7 +81,7 @@
   </div>
 </section>
 
-<section id="contact" class="section section-alt">
+<section id="contact" class="section">
   <div class="wrap contact-grid">
     <div class="contact-intro">
       <p class="eyebrow">Contact</p>

@@ -24,9 +24,13 @@ enableRobotsTXT = true
   url = "#work"
   weight = 2
 [[menu.main]]
+  name = "Clients"
+  url = "#testimonials"
+  weight = 3
+[[menu.main]]
   name = "About"
   url = "#about"
-  weight = 3
+  weight = 4
 [[menu.main]]
   name = "Contact"
   url = "#contact"
