@@ -16,6 +16,7 @@ disableKinds = ["taxonomy", "term"]   # single-page site: no /tags/ or /categori
   email = "info@cominvent.com"
   linkedin = "https://www.linkedin.com/in/janhoy/"
   solrtraining = "https://solrtraining.com"   # online Apache Solr training business
+  contact_endpoint = "https://contact.cominvent.com"   # cominvent-contact Worker (see contact-worker/)
   # Single-page scroll: nav = in-page anchors (see the [[menu.main]] anchors below).
 
 [[menu.main]]

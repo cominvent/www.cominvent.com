@@ -122,7 +122,10 @@ img{max-width:100%;height:auto}
 .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--green);
   box-shadow:0 0 0 3px var(--green-tint)}
 .contact-form .btn{align-self:flex-start;margin-top:.3rem}
-.form-note{font-size:.85rem;color:var(--ink-soft);margin:.2rem 0 0}
+.contact-form .hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-status{font-size:.9rem;margin:.3rem 0 0;min-height:1.2em}
+.form-status.ok{color:var(--green-dark);font-weight:600}
+.form-status.err{color:#c0392b}
 
 /* ---------- Footer ---------- */
 .site-footer{background:var(--footer);color:#c8d0cc;padding:3.5rem 0}

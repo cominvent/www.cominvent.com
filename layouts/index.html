@@ -99,14 +99,37 @@
       <h2 class="section-title">Let's talk</h2>
       <p>Tell us about your project — search, AI, data or security — and we'll get back to you.</p>
     </div>
-    {{/* TODO 23c: wire to a Brevo-backed endpoint (server-side; do NOT put the Brevo key in this page). */}}
-    <form class="contact-form" method="post" action="/api/contact" novalidate>
+    <form class="contact-form" id="contact-form" novalidate>
       <label>Name<input type="text" name="name" autocomplete="name" required></label>
       <label>Email<input type="email" name="email" autocomplete="email" required></label>
       <label>Message<textarea name="message" rows="5" required></textarea></label>
+      {{/* honeypot: real users leave this empty; the Worker drops any submission that fills it */}}
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn-primary" type="submit">Send message</button>
-      <p class="form-note">The form endpoint isn't live yet (task 23c).</p>
+      <p class="form-status" role="status" aria-live="polite"></p>
     </form>
+    <script>
+    (function () {
+      var EP = {{ .Site.Params.contact_endpoint | default "" | jsonify }};
+      var f = document.getElementById("contact-form"); if (!f) return;
+      var s = f.querySelector(".form-status"), btn = f.querySelector("button[type=submit]");
+      var val = function (n) { return f.elements[n].value; };
+      f.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        if (!f.reportValidity()) return;
+        if (!EP) { s.className = "form-status err"; s.textContent = "The contact form is being set up — please try again shortly."; return; }
+        btn.disabled = true; s.className = "form-status"; s.textContent = "Sending…";
+        try {
+          var r = await fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: val("name"), email: val("email"), message: val("message"), company: val("company") }) });
+          var d = await r.json().catch(function () { return {}; });
+          if (r.ok && d.ok) { f.reset(); s.className = "form-status ok"; s.textContent = "Thanks — your message has been sent."; }
+          else { s.className = "form-status err"; s.textContent = (d && d.error) || "Something went wrong. Please try again."; }
+        } catch (_) { s.className = "form-status err"; s.textContent = "Network error. Please try again."; }
+        finally { btn.disabled = false; }
+      });
+    })();
+    </script>
   </div>
 </section>
 {{ end }}

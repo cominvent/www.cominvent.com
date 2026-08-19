@@ -1,0 +1,20 @@
+# Cloudflare Worker: cominvent.com contact form -> Brevo transactional email.
+# Deploy:  cd contact-worker && npx wrangler deploy
+# Secret:  npx wrangler secret put BREVO_API_KEY      (paste the Brevo API key — value of .env BRAVO_API_KEY)
+# This dir is NOT part of the Hugo build; it deploys separately via wrangler.
+name = "cominvent-contact"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+account_id = "605bfe53314f11ca3dbe767bca1fabef"
+workers_dev = false
+
+# Custom domain (wrangler creates the proxied DNS record + cert on the cominvent.com zone).
+routes = [
+  { pattern = "contact.cominvent.com", custom_domain = true },
+]
+
+[vars]
+TO_EMAIL = "ci@cominvent.com"
+FROM_EMAIL = "noreply@cominvent.com"     # Brevo-authenticated sender (task 26h)
+FROM_NAME = "Cominvent website"
+ALLOWED_ORIGINS = "https://cominvent.com,https://www.cominvent.com,https://new.cominvent.com"
