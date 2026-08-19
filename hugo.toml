@@ -2,6 +2,8 @@ baseURL = "https://cominvent.com/"   # apex domain is canonical; www redirects t
 title = "Cominvent"
 defaultContentLanguage = "en"
 enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]   # single-page site: no /tags/ or /categories/ pages
+                                      # (they'd carry the nav's #anchors and fail htmltest)
 
 [languages.en]
   locale = "en-us"
