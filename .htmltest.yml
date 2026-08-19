@@ -2,3 +2,6 @@ DirectoryPath: public
 CheckExternal: false
 IgnoreDirectoryMissingTrailingSlash: true
 EnforceHTTPS: false
+# The featured bento tile's background image is decorative (aria-hidden, sits behind the
+# text overlay), so it correctly uses alt="" — allow empty alt, still flag missing alt.
+IgnoreAltEmpty: true

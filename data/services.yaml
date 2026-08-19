@@ -1,21 +1,32 @@
-# Service cards for the Services section (task 23b/23c). Icons are inline SVG keys (see index.html).
+# Service tiles for the "What we do" bento section (task 23b/23c).
+# `icon`   -> inline SVG key (see index.html $icons)
+# `accent` -> per-tile accent colour (icon chip + top rule + hover), for visual variety
+# `size`   -> bento role: featured (large 2x2 tile w/ optional hero image), banner (full-width), or omitted (normal)
 - title: "Apache Solr & OpenSearch"
   icon: search
+  accent: "#3f7a3c"
+  size: featured
   body: "Deep expertise in Apache Solr and OpenSearch — relevance tuning, scaling, cluster operations and search architecture, from someone who helps build the technology itself. The specialism Cominvent is known for."
 - title: "AI & Chatbots"
   icon: ai
+  accent: "#6366f1"
   body: "LLM-powered applications, retrieval-augmented generation (RAG), semantic search and conversational assistants — grounded in your own data."
 - title: "Open-source Data & Lakehouse"
   icon: data
+  accent: "#d97a1e"
   body: "Modern data platforms and lakehouse architectures on open-source foundations — ingestion, storage, query and governance without vendor lock-in."
 - title: "Cyber Security"
   icon: shield
+  accent: "#2563eb"
   body: "Security assessments, infrastructure hardening and secure-by-design engineering for the search, data and AI systems you depend on."
+- title: "Migration & Support"
+  icon: support
+  accent: "#c65b7c"
+  body: "Version migrations and upgrades, plus live production support for open-source search and data infrastructure when you need an expert on call."
 - title: "Online Solr Training"
   icon: training
+  accent: "#0f9d8f"
+  size: banner
   body: "Live, instructor-led online courses in Apache Solr and search — hands-on, and open to attendees anywhere. Run through our dedicated training business."
   link: "https://solrtraining.com"
   link_text: "Browse courses at solrtraining.com →"
-- title: "Migration & Support"
-  icon: support
-  body: "Version migrations and upgrades, plus live production support for open-source search and data infrastructure when you need an expert on call."

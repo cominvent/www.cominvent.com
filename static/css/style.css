@@ -47,10 +47,10 @@ img{max-width:100%;height:auto}
 .site-nav{display:flex;gap:1.5rem;align-items:center}
 .site-nav a{font-weight:500;font-size:.98rem;color:var(--ink-soft)}
 .site-nav a:hover{color:var(--ink);text-decoration:none}
-.nav-training{color:var(--green-dark)!important;font-weight:600!important}
+.nav-training{color:var(--green-dark)!important;font-weight:600!important;white-space:nowrap}
 .nav-training:hover{color:var(--green)!important}
 .nav-cta{background:var(--green-tint);color:var(--green-dark)!important;font-weight:600!important;
-  padding:.45rem 1rem;border-radius:999px}
+  padding:.45rem 1rem;border-radius:999px;white-space:nowrap}
 .nav-cta:hover{background:var(--green);color:#fff!important}
 
 /* ---------- Section scaffolding ---------- */
@@ -70,27 +70,70 @@ img{max-width:100%;height:auto}
 .hero-lead{font-size:1.2rem;color:var(--ink-soft);margin:0 0 2rem;max-width:42rem}
 .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap}
 
-/* ---------- Service cards ---------- */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
-.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem 1.5rem;
-  transition:.18s ease}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#d5e0cf}
-.card-icon{display:grid;place-items:center;width:3rem;height:3rem;border-radius:12px;
-  background:var(--green-tint);color:var(--green-dark);margin-bottom:1rem}
+/* ---------- Services: bento grid ---------- */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.tile{position:relative;display:flex;overflow:hidden;background:var(--bg);
+  border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius);
+  padding:1.6rem 1.5rem;transition:.18s ease}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.tile-normal{background:color-mix(in srgb,var(--accent) 5%,#fff);
+  border-color:color-mix(in srgb,var(--accent) 16%,var(--line))}
+.tile-inner{display:flex;flex-direction:column;width:100%}
+.card-icon{display:grid;place-items:center;width:3rem;height:3rem;border-radius:12px;flex:none;
+  background:color-mix(in srgb,var(--accent) 14%,#fff);color:var(--accent);margin-bottom:1rem}
 .card-title{font-size:1.18rem;font-weight:700;color:var(--ink);margin:0 0 .5rem}
 .card-body{color:var(--ink-soft);font-size:1rem;margin:0}
-.card-link{display:inline-block;margin-top:.9rem;font-weight:600;color:var(--green-dark);font-size:.95rem}
-.card-link:hover{color:var(--green);text-decoration:none}
+.card-link{display:inline-block;margin-top:.9rem;font-weight:600;color:var(--accent);font-size:.95rem}
+.card-link:hover{filter:brightness(.9);text-decoration:none}
 
-/* ---------- Testimonials ---------- */
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
-.quote{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+/* featured tile (2x2, optional hero image + dark overlay) */
+.tile-featured{grid-column:span 2;grid-row:span 2;min-height:17rem;color:#fff;
+  border:none;background:linear-gradient(150deg,#345f30,#5f9e57)}
+.tile-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.tile-featured::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(16,19,24,0) 0%,rgba(16,19,24,.30) 42%,rgba(16,19,24,.86) 100%)}
+.tile-featured .tile-inner{position:relative;z-index:2;margin-top:auto}
+.tile-featured .card-icon{background:rgba(255,255,255,.18);color:#fff;margin-bottom:1.1rem}
+.tile-featured .card-title{color:#fff;font-size:1.55rem}
+.tile-featured .card-body{color:rgba(255,255,255,.92);font-size:1.05rem;max-width:34rem}
+
+/* full-width training banner */
+.tile-banner{grid-column:1/-1;background:color-mix(in srgb,var(--accent) 7%,#fff)}
+.tile-banner .tile-inner{flex-direction:row;align-items:center;gap:1.3rem;flex-wrap:wrap}
+.tile-banner .card-icon{margin:0}
+.tile-banner .card-title{margin:0;flex:none}
+.tile-banner .card-body{margin:0;flex:1 1 18rem}
+.tile-banner .card-link{margin:0 0 0 auto;padding:.62rem 1.2rem;border-radius:999px;
+  background:var(--accent);color:#fff;white-space:nowrap}
+.tile-banner .card-link:hover{filter:brightness(1.08)}
+
+/* ---------- Testimonials: carousel ---------- */
+.carousel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;
+  flex-wrap:wrap;margin-bottom:1.6rem}
+.carousel-head .section-title{margin-bottom:0}
+.carousel-nav{display:flex;gap:.5rem;flex:none}
+.carousel-btn{width:2.7rem;height:2.7rem;border-radius:999px;border:1.5px solid var(--line);
+  background:#fff;color:var(--ink);font-size:1.5rem;line-height:1;cursor:pointer;
+  display:grid;place-items:center;transition:.15s ease}
+.carousel-btn:hover{border-color:var(--green);color:var(--green-dark);transform:translateY(-1px)}
+.carousel-btn:disabled{opacity:.35;cursor:default;transform:none}
+/* No scroll-snap / scroll-behavior:smooth here — both fight the JS auto-drift
+   (mandatory snap yanks the position back to a card; smooth turns each tiny
+   per-frame scrollLeft set into a stalled animation). Arrow buttons still
+   animate smoothly via their explicit scrollBy({behavior:"smooth"}). */
+.carousel-track{display:flex;gap:1.3rem;overflow-x:auto;
+  padding:.4rem .2rem 1.1rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.carousel-track:focus-visible{outline:2px solid var(--green);outline-offset:4px;border-radius:var(--radius)}
+.carousel-track::-webkit-scrollbar{height:8px}
+.carousel-track::-webkit-scrollbar-thumb{background:var(--line);border-radius:999px}
+.quote{margin:0;flex:0 0 min(85%,23rem);
+  background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
   padding:1.6rem 1.5rem;border-top:3px solid var(--green)}
 .quote blockquote{margin:0 0 1rem;font-size:1.05rem;color:var(--ink);line-height:1.55}
 .quote figcaption{display:flex;flex-direction:column}
 .quote-name{font-weight:700;color:var(--ink)}
 .quote-role{font-size:.92rem;color:var(--ink-soft)}
-.quotes-more{margin:1.8rem 0 0}
+.quotes-more{margin:1.4rem 0 0}
 
 /* ---------- About ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:2.5rem;align-items:start}
@@ -141,13 +184,16 @@ img{max-width:100%;height:auto}
 
 /* ---------- Responsive ---------- */
 @media (max-width:860px){
-  .cards,.quotes,.work{grid-template-columns:repeat(2,1fr)}
+  .bento,.work{grid-template-columns:repeat(2,1fr)}
+  .tile-featured{grid-column:1/-1;grid-row:auto;min-height:14rem}
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:1.6rem}
 }
 @media (max-width:640px){
   body{font-size:17px}
   .section{padding:3.5rem 0}
   .site-nav a:not(.nav-cta):not(.nav-training){display:none}
-  .cards,.quotes,.work{grid-template-columns:1fr}
+  .bento,.work{grid-template-columns:1fr}
+  .tile-banner .tile-inner{gap:1rem}
+  .tile-banner .card-link{margin:.4rem 0 0}
   .footer-inner{flex-direction:column}
 }
